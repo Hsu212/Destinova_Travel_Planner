@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+:root {
+  --bg-color: #B8FB3C;
+  --header-bg: #a3e635;
+  --text-color: #333;
+  --link-bg: rgba(255, 255, 255, 0.2);
+  --link-hover: #2ecc71;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --city-title: #343433;
+  --rating-color: #8dd408;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --button-bg: #a3e635;
+  --button-hover: #2ecc71;
+  --border-color: #ddd;
+}
+
+.dark {
+  --bg-color: #03045E;
+  --header-bg: #1a1a7e;
+  --text-color: #f5f3f3;
+  --link-bg: rgba(255, 255, 255, 0.1);
+  --link-hover: #B8FB3C;
+  --card-bg: rgba(28, 37, 38, 0.9);
+  --city-title: #262627;
+  --rating-color: #cfcfd4;
+  --shadow-color: rgba(255, 255, 255, 0.1);
+  --button-bg: #1a1a7e;
+  --button-hover: #B8FB3C;
+  --border-color: #555;
+}
+
+body {
+  margin: 0;
+  font-family: 'Ubuntu', sans-serif;
+  background-color: #ffffff;
+  color: var(--text-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 60px auto 0;
+  padding: 20px;
+}
+
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: var(--header-bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 1000;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  transition: height 0.3s ease;
+}
+
+.top-nav.scrolled {
+  height: 80px;
+}
+
+.top-nav-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.language-select select {
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.auth-btn {
+  background-color: var(--button-bg);
+  color: var(--text-color);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.auth-btn:hover {
+  background-color: var(--button-hover);
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5em;
+  color: var(--text-color);
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.theme-toggle:hover {
+  background-color: var(--link-hover);
+  color: white;
+}
+
+.main-nav {
+  position: sticky;
+  top: 60px;
+  height: 50px;
+  background-color: var(--card-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 999;
+  box-shadow: 0 1px 3px var(--shadow-color);
+  backdrop-filter: blur(5px);
+  transition: top 0.3s ease;
+}
+
+.main-nav.scrolled {
+  top: 80px;
+}
+
+.logo {
+  margin: 0;
+  color: var(--text-color);
+  font-size: 1.5em;
+}
+
+.dark .logo {
+  color: #ffffff;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 20px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-item:hover {
+  background-color: var(--link-hover);
+  color: white;
+}
+
+.search-bar {
+  position: sticky;
+  top: 110px;
+  height: 50px;
+  background-color: var(--card-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 998;
+  box-shadow: 0 1px 3px var(--shadow-color);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.search-bar-top {
+  height: auto;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  margin: 0 10px;
+}
+
+.search-input {
+  width: 80%;
+  max-width: 600px;
+  height: 40px;
+  padding: 0 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 25px;
+  font-size: 1em;
+  font-family: 'Ubuntu', sans-serif;
+  outline: none;
+}
+
+.search-bar-top .search-input {
+  width: 200px;
+  height: 30px;
+  font-size: 0.9em;
+}
+
+.search-input:focus {
+  border-color: var(--link-hover);
+}
+
+.home-content,
+.page-content {
+  padding-top: 20px;
+}
+
+.city-section {
+  margin-bottom: 40px;
+}
+
+.city-title {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: var(--city-title);
+}
+
+.places-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.place-card {
+  background-color: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--shadow-color);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.place-card:hover {
+  transform: scale(1.05);
+}
+
+.place-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.place-content {
+  padding: 15px;
+}
+
+.place-name {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.place-desc {
+  font-size: 1em;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.place-rating {
+  font-weight: bold;
+  color: var(--rating-color);
+}
+
+.favorite-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+.map-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: var(--button-bg);
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.map-btn:hover {
+  background-color: var(--button-hover);
+}
+
+.favorites-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: var(--text-color);
+}
