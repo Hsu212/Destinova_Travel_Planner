@@ -7,7 +7,7 @@ export const ScrollProvider = ({ children }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 110); // Trigger when scrolled past TopNav (60px) + MainNav (50px)
+      setIsScrolled(window.scrollY > 120); // Adjusted threshold to 120px
     };
 
     window.addEventListener('scroll', handleScroll);
