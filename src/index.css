@@ -1,45 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
 
 :root {
-  --bg-color: #B8FB3C;
-  --header-bg: #a3e635;
-  --text-color: #333;
-  --link-bg: rgba(255, 255, 255, 0.2);
-  --link-hover: #2ecc71;
-  --card-bg: rgba(255, 255, 255, 0.9);
-  --city-title: #343433;
-  --rating-color: #8dd408;
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --button-bg: #a3e635;
-  --button-hover: #2ecc71;
-  --border-color: #ddd;
+  --bg-color: #00abe1; /* Vibrant blue for light theme */
+  --header-bg: rgba(255, 255, 255, 0.15); /* Glassy white for other components */
+  --text-color: #000000; /* Black text for light theme */
+  --link-bg: rgba(255, 255, 255, 0.2); /* Glassy white for links */
+  --link-hover: #ffffff; /* White hover for contrast */
+  --card-bg: rgba(255, 255, 255, 0.25); /* Glassy card */
+  --city-title: #000000; /* Black title */
+  --rating-color: #ffffff; /* White rating for contrast */
+  --shadow-color: rgba(0, 0, 0, 0.3); /* Darker shadow for depth */
+  --button-bg: rgba(255, 255, 255, 0.2); /* Glassy button */
+  --button-hover: rgba(255, 255, 255, 0.4); /* Brighter glassy hover */
+  --border-color: rgba(255, 255, 255, 0.4); /* Light border for glassy components */
+  --search-bar-border: #ffffff; /* Solid white border for search bar visibility */
+  --search-bar-height: 40px;
+  --search-bar-top-height: 34px; /* Increased height for scrolled state */
+  --top-nav-height: 50px;
+  --top-nav-scrolled-height: 50px;
+  --main-nav-height: 50px;
+  --search-bar-offset: 10px; /* Gap between MainNav and SearchBar */
 }
 
 .dark {
-  --bg-color: #03045E;
-  --header-bg: #1a1a7e;
-  --text-color: #f5f3f3;
-  --link-bg: rgba(255, 255, 255, 0.1);
-  --link-hover: #B8FB3C;
-  --card-bg: rgba(28, 37, 38, 0.9);
-  --city-title: #262627;
-  --rating-color: #cfcfd4;
-  --shadow-color: rgba(255, 255, 255, 0.1);
-  --button-bg: #1a1a7e;
-  --button-hover: #B8FB3C;
-  --border-color: #555;
+  --bg-color: #161f6d; /* Deep navy for dark theme */
+  --header-bg: rgba(0, 0, 0, 0.15); /* Glassy black for other components */
+  --text-color: #e0e7ff; /* Light blue-white text */
+  --link-bg: rgba(0, 0, 0, 0.2); /* Glassy black for links */
+  --link-hover: #4fc3f7; /* Bright blue hover */
+  --card-bg: rgba(0, 0, 0, 0.25); /* Glassy dark card */
+  --city-title: #e0e7ff; /* Light blue-white title */
+  --rating-color: #4fc3f7; /* Bright blue rating */
+  --shadow-color: rgba(255, 255, 255, 0.3); /* Lighter shadow */
+  --button-bg: rgba(0, 0, 0, 0.2); /* Glassy dark button */
+  --button-hover: rgba(0, 0, 0, 0.4); /* Darker glassy hover */
+  --border-color: rgba(255, 255, 255, 0.4); /* Light border for glassy components */
+  --search-bar-border: #4fc3f7; /* Bright blue border for dark theme visibility */
 }
 
 body {
   margin: 0;
   font-family: 'Ubuntu', sans-serif;
-  background-color: #ffffff;
+  background-color: var(--bg-color);
   color: var(--text-color);
 }
 
 .container {
   max-width: 1200px;
-  margin: 60px auto 0;
+  margin: calc(var(--top-nav-scrolled-height) + var(--main-nav-height) + var(--search-bar-height) + var(--search-bar-offset) + 20px) auto 0;
   padding: 20px;
 }
 
@@ -48,163 +56,250 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 60px;
-  background-color: var(--header-bg);
+  height: var(--top-nav-height);
+  background-color: #0288d1; /* Solid blue for light theme */
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  z-index: 1000;
-  box-shadow: 0 2px 4px var(--shadow-color);
-  transition: height 0.3s ease;
+  z-index: 1020;
+  transition: height 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark .top-nav {
+  background-color: #0d133f; /* Solid navy for dark theme */
 }
 
 .top-nav.scrolled {
-  height: 80px;
+  height: var(--top-nav-scrolled-height);
+  box-shadow: 0 2px 6px var(--shadow-color); /* Enhanced shadow */
 }
 
 .top-nav-content {
   display: flex;
   align-items: center;
-  gap: 10px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+  justify-content: flex-end; /* Keep right alignment for right-content */
+}
+
+.right-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-shrink: 0;
 }
 
 .language-select select {
   background: transparent;
   border: none;
-  color: var(--text-color);
+  color: var(--text-color); /* Black in light theme, light blue-white in dark */
   font-family: 'Ubuntu', sans-serif;
   font-size: 1em;
   cursor: pointer;
+  flex-shrink: 0;
+  transition: color 0.3s ease;
+}
+
+.language-select select:hover,
+.language-select select:focus {
+  color: #000000; /* Black text on hover and focus in light theme */
+}
+
+.dark .language-select select:hover,
+.dark .language-select select:focus {
+  color: var(--link-hover); /* Bright blue on hover and focus in dark theme */
 }
 
 .user-actions {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
+  min-width: 180px;
 }
 
 .auth-btn {
   background-color: var(--button-bg);
   color: var(--text-color);
-  border: none;
-  padding: 8px 16px;
+  border: 1px solid var(--border-color); /* Glassy border */
+  padding: 6px 12px;
   border-radius: 20px;
   cursor: pointer;
   font-weight: bold;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  font-size: 0.9em;
+  backdrop-filter: blur(5px); /* Glassmorphism */
 }
 
 .auth-btn:hover {
   background-color: var(--button-hover);
+  transform: scale(1.05);
+  box-shadow: 0 0 8px var(--link-hover); /* Cool glow effect */
 }
 
 .theme-toggle {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1.5em;
+  font-size: 1.2em;
   color: var(--text-color);
-  padding: 8px;
-  border-radius: 50%;
-  transition: background-color 0.3s, color 0.3s;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, color 0.3s ease;
 }
 
 .theme-toggle:hover {
-  background-color: var(--link-hover);
-  color: white;
+  transform: scale(1.1);
+  color: var(--link-hover); /* Cool hover effect */
 }
 
 .main-nav {
-  position: sticky;
-  top: 60px;
-  height: 50px;
-  background-color: var(--card-bg);
+  position: fixed;
+  top: var(--top-nav-height);
+  left: 0;
+  right: 0;
+  height: var(--main-nav-height);
+  background-color: var(--header-bg);
+  backdrop-filter: blur(10px); /* Glassmorphism */
+  border-bottom: 1px solid var(--border-color); /* Subtle border */
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
   padding: 0 20px;
-  z-index: 999;
-  box-shadow: 0 1px 3px var(--shadow-color);
-  backdrop-filter: blur(5px);
-  transition: top 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 2px 6px var(--shadow-color); /* Enhanced shadow */
 }
 
 .main-nav.scrolled {
-  top: 80px;
+  top: var(--top-nav-scrolled-height);
 }
 
 .logo {
-  margin: 0;
-  color: var(--text-color);
   font-size: 1.5em;
+  font-weight: bold;
+  color: var(--text-color);
+  margin: 0;
+  flex-shrink: 0;
+  transition: color 0.3s ease;
+  margin-right: auto; /* Move logo to the left */
 }
 
-.dark .logo {
-  color: #ffffff;
+.logo:hover {
+  color: var(--link-hover); /* Cool hover effect */
 }
 
 .nav-links {
   display: flex;
-  gap: 30px;
+  gap: 30px; /* Wider spacing between nav items */
 }
 
 .nav-item {
-  text-decoration: none;
   color: var(--text-color);
-  font-weight: bold;
-  padding: 8px 12px;
-  border-radius: 20px;
-  transition: background-color 0.3s, color 0.3s;
+  text-decoration: none;
+  font-size: 1em;
+  padding: 5px 10px;
+  background-color: var(--link-bg);
+  border-radius: 5px;
+  border: 1px solid var(--border-color); /* Glassy border */
+  transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .nav-item:hover {
-  background-color: var(--link-hover);
-  color: white;
+  color: var(--link-hover);
+  background-color: var(--button-hover);
+  transform: scale(1.05);
+  box-shadow: 0 0 8px var(--link-hover); /* Cool glow effect */
+}
+
+.nav-item.active {
+  background-color: rgba(255, 255, 255, 0.5); /* Slightly darker glassy background for visibility in light theme */
+  color: #e0e7ff; /* Light blue-white text for contrast and cool aesthetic */
+  border-bottom: 2px solid #4fc3f7; /* Vibrant cyan border for cool effect */
+  transform: scale(1.05); /* Match hover scale */
+  box-shadow: 0 0 12px rgba(79, 195, 247, 0.8); /* Stronger cyan glow for cool aesthetic */
+}
+
+.dark .nav-item.active {
+  background-color: rgba(0, 0, 0, 0.6); /* Lighter glassy background for active state in dark theme */
+  color: #a1d6ff; /* Lighter blue text for active state in dark theme */
+  border-bottom: 2px solid #a1d6ff; /* Lighter blue bottom border */
+  box-shadow: 0 0 8px #a1d6ff; /* Lighter blue glow effect */
 }
 
 .search-bar {
-  position: sticky;
-  top: 110px;
-  height: 50px;
-  background-color: var(--card-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 998;
-  box-shadow: 0 1px 3px var(--shadow-color);
-  backdrop-filter: blur(5px);
+  position: absolute;
+  top: calc(var(--top-nav-height) + var(--main-nav-height) + var(--search-bar-offset));
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 600px;
+  height: var(--search-bar-height);
   transition: all 0.3s ease;
+  z-index: 998;
+  border: 1px solid var(--search-bar-border); /* Visible border */
+  border-radius: 25px;
+}
+
+.search-bar.search-bar-transition {
+  top: calc(var(--top-nav-scrolled-height) / 2 - var(--search-bar-top-height) / 2);
+  width: 180px; /* Increased width for scrolled state */
+  height: var(--search-bar-top-height);
 }
 
 .search-bar-top {
-  height: auto;
-  background: transparent;
-  box-shadow: none;
-  backdrop-filter: none;
-  margin: 0 10px;
+  position: absolute;
+  top: calc(var(--top-nav-scrolled-height) / 2 - var(--search-bar-top-height) / 2);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px; /* Increased width for scrolled state */
+  height: var(--search-bar-top-height);
+  flex-shrink: 0;
+  z-index: 1021;
+  background-color: var(--header-bg);
+  backdrop-filter: blur(10px); /* Glassmorphism */
+  border: 1px solid var(--border-color);
+  border-radius: 25px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-bar-top:hover {
+  box-shadow: 0 0 8px var(--link-hover); /* Cool glow effect */
 }
 
 .search-input {
-  width: 80%;
-  max-width: 600px;
-  height: 40px;
-  padding: 0 20px;
-  border: 1px solid var(--border-color);
-  border-radius: 25px;
-  font-size: 1em;
+  width: 100%;
+  height: 100%;
+  padding: 0 15px;
+  border: none;
+  background: transparent;
+  color: #ffffff; /* White text for light theme visibility */
+  font-size: 0.9em;
   font-family: 'Ubuntu', sans-serif;
   outline: none;
+  transition: all 0.3s ease;
+}
+
+.dark .search-input {
+  color: var(--text-color); /* Light blue-white text for dark theme */
 }
 
 .search-bar-top .search-input {
-  width: 200px;
-  height: 30px;
-  font-size: 0.9em;
+  font-size: 0.8em; /* Consistent font size with non-scrolled state */
+  padding: 0 15px; /* Consistent padding with non-scrolled state */
+}
+
+.search-bar-top .search-input::placeholder {
+  font-size: 1em; /* Match placeholder font size */
+  color: #b1afaf; /* Ensure placeholder color matches text in light theme */
+}
+
+.dark .search-bar-top .search-input::placeholder {
+  color: var(--text-color); /* Match placeholder color in dark theme */
 }
 
 .search-input:focus {
-  border-color: var(--link-hover);
+  /* No focus highlight */
 }
 
 .home-content,
@@ -230,16 +325,18 @@ body {
 
 .place-card {
   background-color: var(--card-bg);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); /* Glassmorphism */
+  border: 1px solid var(--border-color); /* Subtle border */
   border-radius: 8px;
   box-shadow: 0 4px 8px var(--shadow-color);
   overflow: hidden;
   position: relative;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .place-card:hover {
   transform: scale(1.05);
+  box-shadow: 0 6px 12px var(--shadow-color), 0 0 10px var(--link-hover); /* Cool glow effect */
 }
 
 .place-image {
@@ -277,6 +374,13 @@ body {
   border: none;
   cursor: pointer;
   font-size: 1.5em;
+  color: var(--text-color);
+  transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.favorite-btn:hover {
+  transform: scale(1.1);
+  color: var(--link-hover); /* Cool hover effect */
 }
 
 .map-btn {
@@ -284,15 +388,19 @@ body {
   bottom: 10px;
   right: 10px;
   background-color: var(--button-bg);
-  border: none;
+  border: 1px solid var(--border-color);
   border-radius: 50%;
   padding: 10px;
   cursor: pointer;
   box-shadow: 0 2px 4px var(--shadow-color);
+  backdrop-filter: blur(5px); /* Glassmorphism */
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .map-btn:hover {
   background-color: var(--button-hover);
+  transform: scale(1.1);
+  box-shadow: 0 0 8px var(--link-hover); /* Cool glow effect */
 }
 
 .favorites-list {
@@ -307,4 +415,105 @@ body {
   font-size: 1.1em;
   line-height: 1.6;
   color: var(--text-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .top-nav-content {
+    gap: 10px;
+    flex-wrap: nowrap;
+    padding: 0 5px;
+  }
+
+  .right-content {
+    gap: 10px;
+  }
+
+  .search-bar-top {
+    width: 140px; /* Increased width for smaller screens */
+    left: 40%;
+    transform: translateX(-50%);
+  }
+
+  .search-bar.search-bar-transition {
+    width: 140px; /* Match search-bar-top width */
+  }
+
+  .user-actions {
+    min-width: 150px;
+  }
+
+  .auth-btn {
+    padding: 5px 10px;
+    font-size: 0.8em;
+  }
+
+  .theme-toggle {
+    font-size: 1em;
+  }
+
+  .main-nav {
+    padding: 0 10px;
+  }
+
+  .nav-links {
+    gap: 22px; /* Adjusted wider spacing for smaller screens */
+  }
+
+  .nav-item {
+    font-size: 0.9em;
+  }
+
+  .container {
+    margin: calc(var(--top-nav-scrolled-height) + var(--main-nav-height) + var(--search-bar-height) + var(--search-bar-offset) + 20px) auto 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-bar-top {
+    width: 120px; /* Increased width for mobile */
+    left: 35%;
+    transform: translateX(-50%);
+  }
+
+  .search-bar.search-bar-transition {
+    width: 120px; /* Match search-bar-top width */
+  }
+
+  .right-content {
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+
+  .user-actions {
+    min-width: 120px;
+    gap: 5px;
+  }
+
+  .auth-btn {
+    padding: 4px 8px;
+    font-size: 0.75em;
+  }
+
+  .language-select select {
+    font-size: 0.9em;
+  }
+
+  .main-nav {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 10px;
+  }
+
+  .nav-links {
+    gap: 15px; /* Adjusted wider spacing for mobile */
+  }
+
+  .nav-item {
+    font-size: 0.85em;
+  }
+
+  .logo {
+    font-size: 1.3em;
+  }
 }
