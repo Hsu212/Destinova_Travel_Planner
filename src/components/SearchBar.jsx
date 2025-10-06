@@ -3,13 +3,15 @@ import { useScroll } from '../context/ScrollContext';
 const SearchBar = ({ isInTopNav = false }) => {
   const { isScrolled } = useScroll();
 
-  if (!isInTopNav && isScrolled) return null;
-
   return (
-    <div className={`search-bar ${isInTopNav ? 'search-bar-top' : ''}`}>
+    <div
+      className={`search-bar ${isInTopNav ? 'search-bar-top' : ''} ${
+        isScrolled && !isInTopNav ? 'search-bar-transition' : ''
+      }`}
+    >
       <input
         type="text"
-        placeholder="Search for places, hotels, restaurants..."
+        placeholder="Search for places..."
         className="search-input"
       />
     </div>
